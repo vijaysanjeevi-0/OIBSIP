@@ -1,0 +1,29 @@
+Target IP: 192.168.2.128
+Operating System Detected: Linux 2.6.X (OS details: Linux 2.6.9 - 2.6.33)
+
+--- PORT ANALYSIS & SECURITY RISK ---
+
+*   **Port**: 21/tcp
+*   **Service**: vsftpd 2.3.4
+*   **Explanation**: FTP is a File Transfer Protocol used to move files between systems.
+*   **Security Risk**: HIGH. FTP transmits data and credentials in clear-text. Furthermore, vsftpd 2.3.4 is known to contain a malicious backdoor command execution vulnerability.
+
+*   **Port**: 23/tcp
+*   **Service**: Linux telnetd
+*   **Explanation**: Telnet is a remote access protocol that provides a command-line interface to the remote machine.
+*   **Security Risk**: HIGH. Telnet sends all communications, including usernames and passwords, in unencrypted clear-text, making it highly susceptible to packet sniffing attacks. It should be replaced with SSH.
+
+*   **Port**: 80/tcp
+*   **Service**: Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+*   **Explanation**: Web server hosting HTTP content.
+*   **Security Risk**: MEDIUM/HIGH. Running an outdated version of Apache (2.2.8 is from 2008). It is likely vulnerable to multiple known CVEs. HTTP also transmits data in clear-text (no SSL/TLS encryption).
+
+*   **Port**: 1524/tcp
+*   **Service**: Metasploitable root shell
+*   **Explanation**: A backdoor shell listening on a high port (often called a bindshell).
+*   **Security Risk**: CRITICAL. This is a direct, unauthenticated root-level command shell left open on the system. An attacker simply has to connect to this port to gain full control of the machine.
+
+*   **Port**: 3306/tcp
+*   **Service**: MySQL 5.0.51a-3ubuntu5
+*   **Explanation**: Relational database management system.
+*   **Security Risk**: MEDIUM. Exposing a database port directly to the network increases the attack surface. If weak credentials are used, attackers could dump or manipulate the database contents.
